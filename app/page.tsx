@@ -4,6 +4,10 @@ import { useEffect, useRef } from "react";
 import { useState } from "react";
 import { gsap } from "gsap";
 
+import Copy from "../components/Copy";
+
+import { ReactLenis } from "lenis/react";
+
 export default function Home() {
 
   const [count, setCount] = useState(0);
@@ -46,7 +50,6 @@ export default function Home() {
       const rotator   = `.${styles.circleinnerrotator}`;
       const block     = `.${styles.block}`;
       const loader    = `.${styles.loader}`;
-      const container = `.${styles.container}`;
 
       // circles drop in 
       tl.from(circles, { duration: 2, y: "-200%", ease: "elastic.out" }, 0.5);
@@ -62,10 +65,10 @@ export default function Home() {
 
       // block reveal (height then width)
       tl.to(block, { duration: 0.75, display: "block", height: 200, ease: "power4.inOut", }, 4.0);
-      tl.to(block, { duration: 0.75, width: 800, ease: "power4.inOut"}, 4.5 );
+      tl.to(block, { duration: 0.75, width: 500, ease: "power4.inOut"}, 4.5 );
 
       // container slides from RIGHT and centers at left:50% with translateX(-50%), stays scale 0.5
-      tl.fromTo(container,
+      tl.fromTo(".container",
         {
           duration: 2,
           left: "100%",
@@ -93,46 +96,116 @@ export default function Home() {
       tl.to(loader, { duration: 2.5, scale: 0, ease: "power4.inOut", }, 7.0);
 
       // container scales up to 1
-      tl.to(container,{ duration: 2, scale: 1 }, 7.5 );
+      tl.to(".container",{ duration: 2, scale: 1 }, 7.5 );
     }, rootRef);
 
     return () => ctx.revert();
   }, []);
   
   return (
-    <div ref={rootRef}>
-      <div className={styles.loader}>
-        <h1 className={styles.counter}>{count}%</h1>
+    <ReactLenis root>
+      <div ref={rootRef}>
+        {/* LOADER */}
+        <div className={styles.loader}>
+          <h1 className={styles.counter}>{count}%</h1>
 
-        <div className={styles.circles}>
-          <div className={`${styles.circle} ${styles.circleouter}`}></div>
-          <div className={`${styles.circle} ${styles.circleinner}`}></div>
-          <div className={styles.circleinnerrotator}></div>
-          <div className={styles.block}></div>
-        </div>
-      </div>
-
-      <div className={styles.container}>
-        <div className={styles.nav}>
-          <div className="logo">Le Specs</div>
-          <div className="back">
-        </div>
-      </div>
-
-      <div className={styles.producthero}>
-        <div className={styles.productheader}>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem minima non eligendi? Recusandae nulla aliquid exercitationem eligendi animi non dolores!
-          </p>
-        </div>
-        <div className={styles.product}>
-          <div className={styles.producttitle}>
-            <h1>Aircraft</h1>
-            <br />by <span>Woods</span>
+          <div className={styles.circles}>
+            <div className={`${styles.circle} ${styles.circleouter}`}></div>
+            <div className={`${styles.circle} ${styles.circleinner}`}></div>
+            <div className={styles.circleinnerrotator}></div>
+            <div className={styles.block}></div>
           </div>
         </div>
+
+        {/* OLD PAGE */}
+        <div className="container">
+          {/* <div className={styles.producthero}>
+            <div className={styles.productheader}>
+              <Copy delay={5.5}>
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem minima non eligendi? Recusandae nulla aliquid exercitationem eligendi animi non dolores!
+              </p>
+              </Copy>
+            </div>
+          </div> */}
+            <section className="hero">
+              <div className="hero-img"></div>
+
+              <div className="header">
+                <Copy delay={5.5}>
+                  <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
+                </Copy>
+              </div>
+            </section>
+
+
+          
+
+          {/* NEW PAGE */}
+            {/* <section className="hero">
+              <div className="hero-img"></div>
+
+              <div className="header">
+                <Copy delay={0.5}>
+                  <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
+                </Copy>
+              </div>
+            </section> */}
+
+            {/* <section className="about">
+              <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+
+              <div className="header">
+                <h1>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque alias tempora voluptatum explicabo provident iusto cupiditate!
+                </h1>
+              </div>
+            </section> */}
+
+            {/* <section className="about-img">
+              <img src="front-view.jpg" alt="" />
+            </section> */}
+
+            {/* <section className="story">
+              <div className="col">
+                <h1> The Story Behind <br /> Our Stillness</h1>
+              </div>
+              <div className="col">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum quae porro illo suscipit est expedita et. Saepe qui quidem explicabo, quos dolorum incidunt delectus, voluptatem perspiciatis alias facere rem sapiente hic molestiae.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum quae porro illo suscipit est expedita et. Saepe qui quidem explicabo, quos dolorum incidunt delectus, voluptatem perspiciatis alias facere rem sapiente hic molestiae.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum quae porro illo suscipit est expedita et. Saepe qui quidem explicabo, quos dolorum incidunt delectus, voluptatem perspiciatis alias facere rem sapiente hic molestiae.</p>
+              </div>
+            </section> */}
+
+            {/* <section className="philosophy">
+              <div className="span">The Thought Beneath</div>
+
+              <div className="header">
+                <h1>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima molestiae voluptas maxime veniam dolore vero ad!</h1>
+              </div>
+
+            </section> */}
+
+            {/* <div className="footer">
+              <div className="col">
+                <div className="sub-col">
+                  <div className="span">Terms & Conditions</div>
+                </div>
+                <div className="sub-col">
+                  <h1>Twitter</h1>
+                  <h1>Linkedin</h1>
+                  <h1>Instagram</h1>
+                  <h1>Awwwards</h1>
+                  <h1>Email</h1>
+                </div>
+              </div>
+              <div className="col">
+                <span>Copyright Greyloom 2025</span>
+              </div>
+            </div> */}
+
+        </div>
       </div>
-      </div>
-    </div>
+    </ReactLenis>
   );
-}
+};
