@@ -103,12 +103,22 @@ export default function Home() {
   return (
     <ReactLenis root>
       <div ref={rootRef}>
-        {/* LOADER */}
+
+        {/* Loader */}
         <div className={styles.loader}>
           <h1 className={styles.counter}>{count}%</h1>
         </div>
 
-        {/* PAGE */}
+        {/* Nav */}
+        <header className="nav">
+          <nav className="nav-link">
+            <Copy delay={4.3} >
+            <a href="#hero">Jorge Azpeitia</a>
+            </Copy>
+          </nav>
+        </header>
+
+        {/* Page */}
         <div className="container">
             <section className="hero">
               <div className="hero-img"></div>
